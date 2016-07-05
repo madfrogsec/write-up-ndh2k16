@@ -147,6 +147,9 @@ openssl enc -aes-256-cbc -d -in ciphermessage -out ciphermessage.dec -k "rsa_hac
 ```
 
 Which smoothly gives us:
+```
+cat ciphermessage.dec
+```
 
 ```
 hey dude!
