@@ -6,19 +6,19 @@
 	
 We were only given a single zip archive containing the following files:
 		
-*rsa_pub
-*aes_key_cipher
-*ciphermessage
+* rsa_pub
+* aes_key_cipher
+* ciphermessage
 	
 We know from the topic that:
 	
-*RSA cipher was used to encrypt aes\_key\_cipher
-*aes\_key\_cipher was used to encrypt ciphermessage
-*aes was used without salt
+* RSA cipher was used to encrypt aes_key_cipher
+* aes_key_cipher was used to encrypt ciphermessage
+* aes was used without salt
 		
 ### Solution
 	
-First we want to gather information about the given RSA public key, since we need to decode the AES key. Let's ask openssl :
+First we want to gather information about the given RSA public key, since we need to decode the AES key.
 
 ```
 openssl rsa -pubin -in rsa_pub -text
