@@ -69,7 +69,7 @@ HEXA=$(openssl rsa -pubin -in rsa/pub_key -modulus | grep Modulus | cut -d'=' -f
 299996217561787292756826251240073744022587364427659002955601969311597453693948323421942282716737653493469667806494795328718748694431287426493332498123774403296361258944222401796946976412532226598881087042326060698386611304550152758781853605660146138394024484376984580234460609993575374222942038026173435262460884234328411077658271473762471945787635582916630508147146325427058379173689622281755189370552117476758492729644576568772220182957835384550972772092654842082706142246481708409910183742375894996805693099913395071166112170527842473265346582564838421321907545834628201837626578791668861148755559537560386588395858682503
 ```
 
-Ask factordb:
+Ask factordb.com:
 ```
 2999962175...03<624> = 10038779 · 2988373561...57<617>
 ```
@@ -81,10 +81,10 @@ from Crypto.PublicKey import RSA
 import gmpy
 
 # Init known RSA paramaters
-n = long(2999962175...) #modulus
-e = long(65537)         #pub exponent
-p = long(10038779)      #first modulus prime factor 
-q = long(2988373561...) #second modulus prime factor
+n = long(2999962175...) # modulus
+e = long(65537)         # pub exponent
+p = long(10038779)      # first modulus prime factor 
+q = long(2988373561...) # second modulus prime factor
 
 # Get priv exponent
 d = long(gmpy.invert(e,(p-1)*(q-1)))
@@ -145,11 +145,11 @@ Noice. Seems like we got the hardest part. Let's decrypt the ciphertext with thi
 ```
 openssl enc -aes-256-cbc -d -in ciphermessage -out ciphermessage.dec -k "rsa_hackerzvoice_for_win" -nosalt
 ```
-
-Which smoothly gives us:
 ```
 cat ciphermessage.dec
 ```
+
+Which smoothly gives us:
 
 ```
 hey dude!
