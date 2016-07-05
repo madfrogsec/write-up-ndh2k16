@@ -24,8 +24,51 @@ First we want to gather information about the given RSA public key, since we nee
 openssl rsa -pubin -in rsa_pub -text
 ```
 
-So we are facing RSA with a 2048bits modulo and a classical value of 65537 for the public exponent. The first thing to do is to check whether or not a factorization for the modulus as already been done. Let's ask factordb :
+```
+Public-Key: (2072 bit)
+Modulus:
+    00:8d:a5:69:19:b5:26:d4:52:25:ac:ed:4b:e6:45:
+    22:ce:f0:4a:63:91:0b:9f:6f:fe:a6:b1:12:55:41:
+    01:3b:e4:5d:48:b6:fb:26:71:b7:54:0e:6a:4e:0b:
+    55:e3:a9:e4:c4:5a:8d:5f:54:a0:69:9c:65:32:d4:
+    a1:28:7f:ac:b0:08:b1:c5:6e:35:d6:01:dc:2a:9e:
+    2e:66:51:89:ea:a3:5d:22:d7:be:a2:52:c1:ec:f2:
+    70:31:ab:65:7d:5b:35:e8:2c:de:70:f8:25:9d:2e:
+    14:e9:86:f3:62:e3:e8:6e:7b:d8:e4:81:2a:52:f2:
+    e8:cc:2f:69:b8:b0:c9:59:77:8f:db:24:0a:8e:17:
+    cb:95:72:45:70:12:d8:3b:6c:72:72:90:e5:0b:8e:
+    7d:a2:8f:eb:df:ab:f5:23:da:03:b9:4b:94:32:2a:
+    f4:21:f9:ca:02:ad:e6:04:da:ab:92:cd:9c:28:24:
+    44:36:f1:15:fd:be:d7:6d:2c:85:00:7a:ca:7f:ce:
+    49:89:3a:f8:0e:79:55:63:2e:c7:b8:9f:56:fa:b0:
+    18:76:e0:fe:88:29:9a:37:34:0d:43:9c:b2:e0:1b:
+    3c:07:e6:0c:88:47:42:1b:fe:04:9d:59:95:40:6b:
+    26:f4:a0:8b:20:d1:49:b3:c6:1a:ae:a3:53:1d:62:
+    f8:f8:d1:e2:87
+Exponent: 65537 (0x10001)
+writing RSA key
+-----BEGIN PUBLIC KEY-----
+MIIBJTANBgkqhkiG9w0BAQEFAAOCARIAMIIBDQKCAQQAjaVpGbUm1FIlrO1L5kUi
+zvBKY5ELn2/+prESVUEBO+RdSLb7JnG3VA5qTgtV46nkxFqNX1SgaZxlMtShKH+s
+sAixxW411gHcKp4uZlGJ6qNdIte+olLB7PJwMatlfVs16CzecPglnS4U6YbzYuPo
+bnvY5IEqUvLozC9puLDJWXeP2yQKjhfLlXJFcBLYO2xycpDlC459oo/r36v1I9oD
+uUuUMir0IfnKAq3mBNqrks2cKCRENvEV/b7XbSyFAHrKf85JiTr4DnlVYy7HuJ9W
++rAYduD+iCmaNzQNQ5yy4Bs8B+YMiEdCG/4EnVmVQGsm9KCLINFJs8YarqNTHWL4
++NHihwIDAQAB
+-----END PUBLIC KEY-----
+```
 
+So we are facing RSA with a 2048bits modulo and a classical value of 65537 for the public exponent. The first thing to do is to check whether or not a factorization for the modulus as already been done. 
+
+Print the modulus in decimal:
+```
+HEXA=$(openssl rsa -pubin -in rsa/pub_key -modulus | grep Modulus | cut -d'=' -f2) && echo "ibase=16;$HEXA" | bc | tr -d '\n' | tr -d '\\'
+```
+```
+299996217561787292756826251240073744022587364427659002955601969311597453693948323421942282716737653493469667806494795328718748694431287426493332498123774403296361258944222401796946976412532226598881087042326060698386611304550152758781853605660146138394024484376984580234460609993575374222942038026173435262460884234328411077658271473762471945787635582916630508147146325427058379173689622281755189370552117476758492729644576568772220182957835384550972772092654842082706142246481708409910183742375894996805693099913395071166112170527842473265346582564838421321907545834628201837626578791668861148755559537560386588395858682503
+```
+
+Ask factordb:
 ```
 2999962175...03<624> = 10038779 · 2988373561...57<617>
 ```
