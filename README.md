@@ -57,8 +57,9 @@ uUuUMir0IfnKAq3mBNqrks2cKCRENvEV/b7XbSyFAHrKf85JiTr4DnlVYy7HuJ9W
 +NHihwIDAQAB
 -----END PUBLIC KEY-----
 ```
+So we are facing RSA with a 2048bits modulo and a classical value of 65537 for the public exponent. The first thing to do is to check whether or not a factorization for the modulus as already been done.
 
-So we are facing RSA with a 2048bits modulo and a classical value of 65537 for the public exponent. The first thing to do is to check whether or not a factorization for the modulus as already been done. 
+If you wonder why this factorization would help us, I suggest you to take a look at this wiki to understand how RSA works : https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation
 
 Print the modulus in decimal:
 ```
@@ -80,10 +81,10 @@ from Crypto.PublicKey import RSA
 import gmpy
 
 # Init known RSA paramaters
-n = long(2999962175...03<624>)
+n = long(2999962175...03<)
 e = long(65537)
 p = long(10038779)
-q = long(2988373561...57<617>)
+q = long(2988373561...57)
 
 # Get priv exponent
 d = long(gmpy.invert(e,(p-1)*(q-1)))
@@ -124,6 +125,7 @@ MCNqXyl1WkrD58QtWBQgzjFcvLiZTnFScKrwi/5ohK0mjUFjkdXV2WLOp1T00+PC
 tnyTF6APzrqjp7HUL2Ec3oVr3ErCxoq8ZgvJYsNdzUfkEkNHDRxHnV/7h4otEZvB
 rgBYI5+yUYkiOnQiPpffPQQVWmIKN6wrGtCQWAnkS7alh9x35uopBLA8Nq+O/7dZ
 DRbu8Ihi09wRu1ngJk2EeBlOg9jX//x10r2nq3EG+tDYkxSjoA==
+-----END RSA PRIVATE KEY-----
 ```
 
 We just copy-paste this nice private key to priv_key.pem and decrypt aes_key_cipher with it:
