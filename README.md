@@ -4,17 +4,17 @@
 
 ### Given files and hint
 	
-	We were only given a single zip archive containing the following files:
+We were only given a single zip archive containing the following files:
 		
-..*rsa_pub
-..*aes_key_cipher
-..*ciphermessage
+*rsa_pub
+*aes_key_cipher
+*ciphermessage
 	
-	We know from the topic that:
+We know from the topic that:
 	
-..*RSA cipher was used to encrypt aes\_key\_cipher
-..*aes\_key\_cipher was used to encrypt ciphermessage
-..*aes was used without salt
+*RSA cipher was used to encrypt aes\_key\_cipher
+*aes\_key\_cipher was used to encrypt ciphermessage
+*aes was used without salt
 		
 ### Solution
 	
