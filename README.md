@@ -74,17 +74,17 @@ Ask factordb:
 2999962175...03<624> = 10038779 · 2988373561...57<617>
 ```
 
-Nice ! We already have a smooth factorization for this long-ass modulus. We know that the private exponent is the modular inverse of the public exponent modulo phi(modulus). Let's recover the private exponent and get that private key (i'll keep factordb notation for convenience):
+Nice ! We already have a smooth factorization for this long-ass modulus. We know that the private exponent is the modular inverse of the public exponent modulo phi(modulus). Let's recover the private exponent and get that private key using python:
 
 ```python
 from Crypto.PublicKey import RSA
 import gmpy
 
 # Init known RSA paramaters
-n = long(2999962175...03<)
-e = long(65537)
-p = long(10038779)
-q = long(2988373561...57)
+n = long(2999962175...) #modulus
+e = long(65537)         #pub exponent
+p = long(10038779)      #first modulus prime factor 
+q = long(2988373561...) #second modulus prime factor
 
 # Get priv exponent
 d = long(gmpy.invert(e,(p-1)*(q-1)))
